@@ -11,4 +11,4 @@ All this does is simply draw a logo over your screen (similar to a watermark). A
 * I will not provide support for any edits made to the files.
 
 ## Credit
-* Full credit goes to Jordan.#2139 for the orignal FiveM version (all I did was make it compatiable for RedM)
+* Full credit goes to Jordan.#2139 for the original FiveM version (all I did was make it compatiable for RedM)
