@@ -9,23 +9,37 @@ body {
 
 #container {
 	position: absolute;
-	top: 2vh;
-	bottom: 100%;
-	left: 80%; /*25*/
 	width: 175px;
 	height: 175px;
 	display: none;
 	flex-direction: column;
 }
 
+/* Top-right position (default) */
+#container.top-right {
+	top: 1vh;
+	right: 10vw;
+}
+
+/* Top-left position */
+#container.top-left {
+	top: 0;
+	left: 0;
+	margin: 10px;
+}
+
+/* Bottom-Left position */
+#container.bottom-left {
+	bottom: 2vh;
+	left: 14.5vw;
+}
+
 header {
 	width: 175px;
 	height: 175px;
-	/*background-color: #a519ea;*/
 	opacity: 0.8;
 	border-top-left-radius: 40px;
 	border-top-right-radius: 40px;
-
 }
 
 header img {
@@ -35,51 +49,51 @@ header img {
 	border-top-right-radius: 40px;
 }
 
-/* Firefox old*/
+/* Keyframes remain unchanged */
 @-moz-keyframes blink {
     0% {
-        opacity:1;
+        opacity: 1;
     }
     50% {
-        opacity:0;
+        opacity: 0;
     }
     100% {
-        opacity:1;
+        opacity: 1;
     }
-} 
+}
 
 @-webkit-keyframes blink {
     0% {
-        opacity:1;
+        opacity: 1;
     }
     50% {
-        opacity:0;
+        opacity: 0;
     }
     100% {
-        opacity:1;
+        opacity: 1;
     }
 }
-/* IE */
+
 @-ms-keyframes blink {
     0% {
-        opacity:1;
+        opacity: 1;
     }
     50% {
-        opacity:0;
+        opacity: 0;
     }
     100% {
-        opacity:1;
+        opacity: 1;
     }
-} 
-/* Opera and prob css3 final iteration */
+}
+
 @keyframes blink {
     0% {
-        opacity:1;
+        opacity: 1;
     }
     50% {
-        opacity:0;
+        opacity: 0;
     }
     100% {
-        opacity:1;
+        opacity: 1;
     }
 }
