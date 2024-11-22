@@ -1,6 +1,6 @@
 -----------------------------------------------------------------
 -- Logo Watermark- A Simple FiveM Script, Made By Jordan.#2139 --
---  RedM Watermark- A simple RedM script, Edited by ImHerHela  --
+--  hela_watermark- A simple RedM script, Edited by ImHerHela  --
 -----------------------------------------------------------------
 
 game 'rdr3'
@@ -9,14 +9,14 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 lua54 'yes'
 
 -- Define the resource metadata
-name "RedM Watermark"
+name "hela_watermark"
 description "A Simple Watermark Script"
 author "ImHerHela"
-version "v1.2.0"
+version "v1.3.0"
 
 client_scripts {
-	"client.lua",
-	'config.lua'
+	'config.lua',
+	'client.lua'
 }
 
 ui_page 'html/ui.html'
