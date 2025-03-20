@@ -19,10 +19,6 @@ client_scripts {
 	'client.lua'
 }
 
-server_script {
-	'versioncheck.lua'
-}
-
 ui_page 'html/ui.html'
 files {
 	'html/*',
