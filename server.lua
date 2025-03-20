@@ -8,7 +8,7 @@ local function versionCheckPrint(_type, log)
 end
 
 local function CheckVersion()
-    PerformHttpRequest('https://raw.githubusercontent.com/imherhela/hela_watermark/version', function(err, text, headers)
+    PerformHttpRequest('https://raw.githubusercontent.com/imherhela/hela_watermark/main/version.txt', function(err, text, headers)
         local currentVersion = GetResourceMetadata(GetCurrentResourceName(), 'version')
 
         if not text then 
