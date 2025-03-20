@@ -13,11 +13,15 @@ description "A Simple Watermark Script"
 author "ImHerHela"
 version "1.1.0"
 
-client_scripts {
-	'config.lua',
+client_script {
 	'client.lua'
 }
-
+server_script {
+	'server.lua'
+}
+shared_script {
+	'config.lua'
+}
 ui_page 'html/ui.html'
 files {
 	'html/*',
