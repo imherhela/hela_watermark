@@ -12,11 +12,15 @@ lua54 'yes'
 name "hela_watermark"
 description "A Simple Watermark Script"
 author "ImHerHela"
-version "v1.3.0"
+version "v1.0"
 
 client_scripts {
 	'config.lua',
 	'client.lua'
+}
+
+server_script {
+	'versioncheck.lua'
 }
 
 ui_page 'html/ui.html'
