@@ -15,13 +15,12 @@ local function CheckVersion()
             versionCheckPrint('error', 'Currently unable to run a version check.')
             return 
         end
-
-        --versionCheckPrint('success', ('Current Version: %s'):format(currentVersion))
-        --versionCheckPrint('success', ('Latest Version: %s'):format(text))
         
         if text == currentVersion then
             versionCheckPrint('success', 'You are running the latest version.')
         else
+            versionCheckPrint('error', ('Current Version: %s'):format(currentVersion))
+            versionCheckPrint('success', ('Latest Version: %s'):format(text))
             versionCheckPrint('error', ('You are currently running an outdated version, please update to version %s'):format(text))
         end
     end)
