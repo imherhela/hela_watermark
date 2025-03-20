@@ -22,8 +22,6 @@ local function CheckVersion()
         if text == currentVersion then
             versionCheckPrint('success', 'You are running the latest version.')
         else
-            versionCheckPrint('error', ('Current Version: %s'):format(currentVersion))
-            versionCheckPrint('success', ('Latest Version: %s'):format(text))
             versionCheckPrint('error', ('You are currently running an outdated version, please update to version %s'):format(text))
         end
     end)
