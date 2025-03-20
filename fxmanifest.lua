@@ -27,12 +27,3 @@ files {
 	'html/*',
 	'img/logo.png'
 }
-
---[[dependency {
-	'vorp_core'
-}
-
-version "1.1.0"
-vorp_checker 'yes'
-vorp_name '^5Hela_Watermark ^4Version Check^3
-vorp_github 'https://github.com/imherhela/hela_watermark']]
