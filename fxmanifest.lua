@@ -11,6 +11,7 @@ lua54 'yes'
 -- Define the resource metadata
 description "A Simple Watermark Script"
 author "ImHerHela"
+version "1.1.0"
 
 client_scripts {
 	'config.lua',
@@ -23,11 +24,11 @@ files {
 	'img/logo.png'
 }
 
-dependency {
+--[[dependency {
 	'vorp_core'
 }
 
 version "1.1.0"
 vorp_checker 'yes'
 vorp_name '^5Hela_Watermark ^4Version Check^3
-vorp_github 'https://github.com/imherhela/hela_watermark'
+vorp_github 'https://github.com/imherhela/hela_watermark']]
