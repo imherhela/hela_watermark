@@ -11,7 +11,6 @@ lua54 'yes'
 -- Define the resource metadata
 description "A Simple Watermark Script"
 author "ImHerHela"
-version "1.1.0"
 
 client_script {
 	'client.lua'
