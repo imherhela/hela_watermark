@@ -1,7 +1,3 @@
------------------------------------------------------------------
--- Logo Watermark- A Simple FiveM Script, Made By Jordan.#2139 --
---  hela_watermark- A simple RedM script, Edited by ImHerHela  --
------------------------------------------------------------------
 local isUiOpen = false
 local userTurnedOff = false
 
