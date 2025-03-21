@@ -1,30 +1,37 @@
------------------------------------------------------------------------
--- version checker
------------------------------------------------------------------------
-local function versionCheckPrint(_type, log)
-    local color = _type == 'success' and '^2' or '^1'
+function checkFile(resourcename, repo)
+    local cleanrepo = repo:gsub("https://github.com/", "")
 
-    print(('^5['..GetCurrentResourceName()..']%s %s^7'):format(color, log))
-end
-
-local function CheckVersion()
-    PerformHttpRequest('https://raw.githubusercontent.com/imherhela/hela_watermark/main/version.txt', function(err, text, headers)
-        local currentVersion = GetResourceMetadata(GetCurrentResourceName(), 'version')
-
-        if not text then 
-            versionCheckPrint('error', 'Currently unable to run a version check.')
-            return 
+    local currentVersion = GetResourceMetadata(resourcename, 'version')
+    PerformHttpRequest('https://raw.githubusercontent.com/'..cleanrepo..'/main/version', function(err, response, headers)
+        if not response or response == "" then
+            print("^1❕ Failed to check version file for " .. resourcename .. "^0")
+            return
         end
-        
-        if text == currentVersion then
-            versionCheckPrint('success', 'You are running the latest version.')
+
+        local latestVersion = response:match("<%d?%d.%d?%d.?%d?%d?>")
+        if latestVersion then
+            latestVersion = latestVersion:gsub("[<>]", "")
         else
-            versionCheckPrint('error', ('Current Version: %s'):format(currentVersion))
-            versionCheckPrint('success', ('Latest Version: %s'):format(text))
-            versionCheckPrint('error', ('You are currently running an outdated version, please update to version %s'):format(text))
+            print("^1❕ Invalid version format in the file for " .. resourcename .. "^0")
+            return
         end
-    end)
+
+        local updateAvailable = latestVersion > currentVersion
+
+        if updateAvailable then
+             print("\n^8❌ OUTDATED! ^6["..resourcename.."] ^3(Current Version "..currentVersion..")^0")
+            print("^2New Version ^0("..latestVersion..") ^5~"..repo.."~\n")
+            
+        else
+            print("\n^2✔️ UPDATED! ^6["..resourcename.."] ^3(Current Version "..currentVersion..")\n")
+        end
+    end, 'GET', '', {
+        ['Content-Type'] = 'application/json'
+    })
 end
 
------------------------------------------------------------------------
-CheckVersion()
+AddEventHandler('onResourceStart', function(resourceName)
+    if resourceName == GetCurrentResourceName() then
+        checkFile(resourceName, "https://github.com/imherhela/hela_watermark")
+    end
+end)
