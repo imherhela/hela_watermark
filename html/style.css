@@ -15,13 +15,13 @@ body {
 	flex-direction: column;
 }
 
-/* Top-right position (default) */
+/* Top-Right position (default) */
 #container.top-right {
 	top: 1vh;
 	right: 10vw;
 }
 
-/* Top-left position */
+/* Top-Left position */
 #container.top-left {
 	top: 0;
 	left: 0;
@@ -32,6 +32,12 @@ body {
 #container.bottom-left {
 	bottom: 2vh;
 	left: 18vw;
+}
+
+/*Top-Center position*/
+#container.top-center { 
+	top: 1vh; 
+	left: 47vw; 
 }
 
 header {
