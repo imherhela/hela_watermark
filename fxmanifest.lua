@@ -25,5 +25,6 @@ shared_script {
 ui_page 'html/ui.html'
 files {
 	'html/*',
-	'img/logo.png'
+	'html/img/logo.png'
 }
+
