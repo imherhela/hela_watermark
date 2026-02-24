@@ -4,3 +4,5 @@
 - Added version checker
 <1.1.1>
 - Added top-center position
+<1.2.0>
+- Fixed Watermark visibility while in map and pause menu
