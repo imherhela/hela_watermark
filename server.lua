@@ -32,9 +32,6 @@ end
 
 AddEventHandler('onResourceStart', function(Resource)
     if Resource == GetCurrentResourceName() then
-        -- Replace with your actual GitHub repository link
-        -- checkRelease(resourceName, "https://github.com/imherhela/hela_watermark")
-        -- OR if using a version file
         checkUpdate(Resource, "https://github.com/imherhela/hela_watermark")
     end
 end)
