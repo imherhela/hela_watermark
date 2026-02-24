@@ -1,29 +1,48 @@
+-----------------------------------------------------------------
+-- Logo Watermark- A Simple FiveM Script, Made By Jordan.#2139 --
+--  RedM Watermark- A simple RedM script, Edited by ImHerHela	 --
+-----------------------------------------------------------------
+
+local display = true
+local showing = false
 local isUiOpen = false
+local isCharacterSelected = false
 local userTurnedOff = false
 
 Citizen.CreateThread(function()
-    local previousState = false
+    SetNuiFocus(false, false)
+    while not DoesEntityExist(PlayerPedId()) or not NetworkIsPlayerActive(PlayerId()) do
+        Citizen.Wait(500)
+    end
 
     while true do
-        Citizen.Wait(100)
+        if not isCharacterSelected then
+            Citizen.Wait(500)
+        else
+            local isMapOrUiActive = IsRadarHidden() or IsPauseMenuActive()
 
-        local isMapOrUiActive = IsRadarHidden() or IsPauseMenuActive()
+            if display then
+                
+                if isMapOrUiActive and showing then
+                    SendNUIMessage({ type = 'DisplayWM', visible = false, position = Config.position })
+                    showing = false
+                elseif not isMapOrUiActive and not showing and not userTurnedOff then
+                    SendNUIMessage({ type = 'DisplayWM', visible = true, position = Config.position })
+                    showing = true
+                end
+            end
 
-        if isMapOrUiActive ~= previousState then
-          previousState = isMapOrUiActive
-          if not userTurnedOff then
-              showWM(not isMapOrUiActive)
-          end
-      end
-  end
+            Citizen.Wait(500)
+        end
+    end
 end)
 
-function showWM(display)
+function ShowWM(display)
   local success, err = pcall(function()
       SendNUIMessage({
           type = 'DisplayWM',
           visible = display,
-          position = config.position -- Pass the position from the config
+          position = Config.position 
       })
   end)
   if not success then
@@ -32,7 +51,6 @@ function showWM(display)
   isUiOpen = display
 end
 
--- Trigger on session start
 Citizen.CreateThread(function()
     if NetworkIsSessionStarted() then
         TriggerEvent("chat:addSuggestion", "/watermark", "Toggle the watermark display")
@@ -40,18 +58,17 @@ Citizen.CreateThread(function()
     end
 end)
 
--- Event: Character selected
-if config.framework == 'vorp' then
+if Config.framework == 'vorp' then
   RegisterNetEvent("vorp:SelectedCharacter")
   AddEventHandler("vorp:SelectedCharacter", function(charid)
       HandleCharacterSelection()
   end)
-elseif config.framework == 'rsg' then
+elseif Config.framework == 'rsg' then
   RegisterNetEvent("RSGCore:Client:OnPlayerLoaded")
   AddEventHandler("RSGCore:Client:OnPlayerLoaded", function(data)
       HandleCharacterSelection()
   end)
-elseif config.framework == 'redemrp' then
+elseif Config.framework == 'redemrp' then
   RegisterNetEvent("redemrp_charselect:SpawnCharacter")
   AddEventHandler("redemrp_charselect:SpawnCharacter", function()
       HandleCharacterSelection()
@@ -61,26 +78,27 @@ else
 end
 
 function HandleCharacterSelection()
-  Citizen.Wait(30000) -- Wait for 30 seconds
-  isUiOpen = true
-  TriggerEvent('DisplayWM', true)
+    isCharacterSelected = true
+    Citizen.Wait(15000) 
+    isUiOpen = true
+    TriggerEvent('DisplayWM', true)
 end
 
--- Event: Display watermark
 RegisterNetEvent('DisplayWM')
 AddEventHandler('DisplayWM', function(status)
     if status then
         userTurnedOff = false 
-        showWM(true)
+        SendNUIMessage({ type = 'DisplayWM', visible = true, position = Config.position })
+        showing = true
     else
         userTurnedOff = true
-        showWM(false)
+        SendNUIMessage({ type = 'DisplayWM', visible = false, position = Config.position })
+        showing = false
     end
 end)
 
--- Command: Toggle watermark
 RegisterCommand('watermark', function()
-  if config.allowoff then
+  if Config.allowoff then
       local newStatus = not isUiOpen
       TriggerEvent('DisplayWM', newStatus)
   else
@@ -90,5 +108,19 @@ RegisterCommand('watermark', function()
           args = {"^9[RedM-WM] ^1This server has disabled the option to toggle the watermark!"}
       })
   end
+end)
+
+
+CreateThread(function()
+    local DisableTabWheelCompass = true
+	
+    if DisableTabWheelCompass then
+	while true do
+		Wait(1)
+        if Citizen.InvokeNative(0x96FD694FE5BE55DC, GetHashKey("hud_quick_select")) == 1322164459 or Citizen.InvokeNative(0x96FD694FE5BE55DC, GetHashKey("hud_quick_select")) == 400623090 then
+		DisplayRadar(false)
+			end
+		end
+	end
 end)
 
