@@ -6,3 +6,4 @@
 - Added top-center position
 <1.2.0>
 - Fixed Watermark visibility while in map and pause menu
+- Moved img folder to html folder
