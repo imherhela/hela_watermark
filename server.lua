@@ -12,7 +12,7 @@ function checkUpdate(resource, repo, token)
         headers = {
             ['Authorization'] = 'Bearer ' .. token,
             ['Accept']        = 'application/vnd.github+json',
-            ['User-Agent']    = 'FiveM-Script'
+            ['User-Agent']    = 'RedM-Script'
         }
     else
         local repos = repo:gsub("https://github.com/", "")
