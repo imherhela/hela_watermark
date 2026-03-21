@@ -48,7 +48,7 @@ function checkUpdate(resource, repo, token)
         local update = latest > current
 
         if update then
-            print("\n^8❌ -OUTDATED! ^6⋘ "..resource.."⋙ ^3(Version "..current..")^0")
+            print("\n^8❌ -OUTDATED! ^6⋘ "..resource.."⋙ ^3 (Version "..current..")^0")
             print("^2New Version ^0("..latest..") ^5~"..repo.."~\n")
         else
             print("\n^2✔️ -UPDATED! ^6⋘ "..resource.."⋙ ^3 (Version "..current..")\n")
